@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
-<head>
+<head> <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+
 <title></title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -54,7 +56,7 @@
       box-sizing: border-box;" class="text-input" placeholder="Enter your text...">
 	  <br><br><button style="height:40px;border-radius: 5px;font-size: 16px; background-color: rgb(154, 206, 124);
       border: 1px solid #ccc;" id="captureButton">Capture Response</button>
-	  <canvas id="screenshotCanvas" style="display: none;"></canvas>
+	  <div id="screenshotContainer" style="display: none;"></div>
 	  </p>
 	  
 <p style="position:absolute;top:381px;left:108px;white-space:nowrap" class="ft13">&#160;</p>
@@ -152,37 +154,31 @@
 	border-radius: 5px;
 	box-sizing: border-box;" class="text-input" placeholder="Enter your text..."></p>
 </div>
-
 <script>
+	// Attach event listener to the capture button
 	const captureButton = document.getElementById('captureButton');
-	const screenshotCanvas = document.getElementById('screenshotCanvas');
-	
+	const screenshotContainer = document.getElementById('screenshotContainer');
+  
 	captureButton.addEventListener('click', () => {
-	  // Get the dimensions of the viewport
-	  const viewportWidth = window.innerWidth;
-	  const viewportHeight = window.innerHeight;
-	  
-	  // Set the canvas dimensions to match the viewport
-	  screenshotCanvas.width = viewportWidth;
-	  screenshotCanvas.height = viewportHeight;
-	  
-	  const context = screenshotCanvas.getContext('2d');
-	  
-	  // Capture screenshot by drawing the content of the current window onto the canvas
-	  context.drawWindow(window, 0, 0, viewportWidth, viewportHeight, 'rgb(255,255,255)');
-	  
-	  // Convert canvas to data URL
-	  const dataURL = screenshotCanvas.toDataURL('image/png');
-	  
-	  // Create a link to download the screenshot
-	  const link = document.createElement('a');
-	  link.download = 'screenshot.png';
-	  link.href = dataURL;
-	  link.click();
+	  // Capture screenshot of the specific container
+	  html2canvas(document.getElementById('page1-div')).then(canvas => {
+		// Clear the screenshotContainer and add the captured screenshot
+		screenshotContainer.innerHTML = '';
+		screenshotContainer.appendChild(canvas);
+  
+		// Convert canvas to data URL
+		const dataURL = canvas.toDataURL('image/png');
+  
+		// Create a link to download the screenshot
+		const link = document.createElement('a');
+		link.download = 'screenshot.png';
+		link.href = dataURL;
+		link.click();
+	  });
 	});
   </script>
-
-
+  
+  
 </body>
 </html>
 <!DOCTYPE html>

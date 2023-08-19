@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Screenshot</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #6bbf62;
+        }
+        .upload-container {
+            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .upload-btn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-btn:hover {
+            background-color: #45a049;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .upload-label {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h1>Upload CBT response</h1>
+        <p>Upload the screenshot captured earlier (automatically downloaded) :</p>
+        <label for="screenshotFile" class="upload-btn">Choose File</label>
+        <input type="file" id="screenshotFile" accept="image/*">
+        <span class="upload-label">Accepted formats: JPG, PNG</span>
+    </div>
+</body>
+</html>
